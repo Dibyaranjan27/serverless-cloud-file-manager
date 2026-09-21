@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   localstack:
-    image: localstack/localstack:latest
+    image: localstack/localstack:2.3.0
     container_name: localstack_main
     ports:
       - "4566:4566"
@@ -13,9 +13,9 @@ services:
       - DOCKER_HOST=unix:///var/run/docker.sock
       - AWS_DEFAULT_REGION=us-east-1
     volumes:
-      - "C:\Users\Dibya\Desktop\code\New folder/localstack-data:/var/lib/localstack"
-      - "C:\Users\Dibya\Desktop\code\New folder/init-aws.sh:/etc/localstack/init/ready.d/init-aws.sh"
-      - "C:\Users\Dibya\Desktop\code\New folder/lambda:/lambda" # Mount lambda source so init script can zip it
+      - "./localstack-data:/var/lib/localstack"
+      - "./init-aws.sh:/etc/localstack/init/ready.d/init-aws.sh"
+      - "./lambda:/lambda" # Mount lambda source so init script can zip it
       - "/var/run/docker.sock:/var/run/docker.sock"
 
   webapp:
