@@ -20,24 +20,33 @@
             max-width: 900px;
             margin: 0 auto;
         }
-        h1 { 
-            text-align: center; 
-            font-size: 3rem; 
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.5); 
+        .header-card {
+            background: rgba(20, 30, 20, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 20px; 
+            border-radius: 16px; 
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5); 
             margin-bottom: 40px;
-            background: -webkit-linear-gradient(#00f2fe, #4facfe);
+            text-align: center;
+        }
+        h1 { 
+            margin: 0;
+            font-size: 2.8rem; 
+            background: -webkit-linear-gradient(#7ded8d, #27ae60);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 10px rgba(79,172,254,0.5));
+            filter: drop-shadow(0 0 10px rgba(46, 204, 113, 0.4));
         }
         .glass-card { 
-            background: rgba(20, 25, 40, 0.7);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(20, 30, 20, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             padding: 30px; 
             border-radius: 16px; 
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); 
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5); 
             margin-bottom: 30px; 
             transition: transform 0.3s ease;
         }
@@ -46,8 +55,8 @@
         }
         h2 { 
             margin-top: 0; 
-            color: #4facfe; 
-            border-bottom: 2px solid rgba(79, 172, 254, 0.3);
+            color: #7ded8d; 
+            border-bottom: 2px solid rgba(46, 204, 113, 0.3);
             padding-bottom: 10px;
         }
         .flash { padding: 15px; border-radius: 8px; margin-bottom: 20px; font-weight: 600; text-align: center; }
@@ -58,41 +67,78 @@
             display: flex;
             gap: 15px;
             align-items: center;
-        }
-        input[type="file"] {
-            padding: 10px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: white;
-            flex-grow: 1;
-        }
-        button { 
-            background: linear-gradient(45deg, #4facfe 0%, #00f2fe 100%);
-            color: white; 
-            border: none; 
-            padding: 12px 25px; 
-            border-radius: 8px; 
-            cursor: pointer; 
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 242, 254, 0.4);
-        }
-        button:hover { 
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(0, 242, 254, 0.6);
+            flex-wrap: wrap;
         }
         
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; background: rgba(0,0,0,0.2); border-radius: 8px; overflow: hidden; }
+        /* Custom File Input Styling */
+        .file-upload-wrapper {
+            position: relative;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+        }
+        .file-upload-input {
+            opacity: 0;
+            position: absolute;
+            z-index: -1;
+        }
+        .file-upload-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px dashed rgba(255, 255, 255, 0.4);
+            border-radius: 8px;
+            color: #fff;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .file-upload-label:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: #7ded8d;
+            color: #7ded8d;
+        }
+        .file-name-display {
+            margin-left: 15px;
+            font-size: 0.9rem;
+            color: #ccc;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 200px;
+        }
+
+        button.upload-btn { 
+            background: linear-gradient(45deg, #27ae60 0%, #2ecc71 100%);
+            color: white; 
+            border: none; 
+            padding: 14px 30px; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            font-weight: 800;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(46, 204, 113, 0.4);
+        }
+        button.upload-btn:hover { 
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(46, 204, 113, 0.6);
+        }
+        
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; background: rgba(0,0,0,0.3); border-radius: 8px; overflow: hidden; }
         th, td { text-align: left; padding: 15px; }
-        th { background-color: rgba(255,255,255,0.1); font-weight: 600; color: #4facfe; }
+        th { background-color: rgba(255,255,255,0.1); font-weight: 600; color: #7ded8d; }
         tr:not(:last-child) { border-bottom: 1px solid rgba(255,255,255,0.05); }
-        tr:hover { background-color: rgba(255,255,255,0.05); }
+        tr:hover { background-color: rgba(255,255,255,0.1); }
         .empty-state {
             text-align: center;
             padding: 40px;
-            color: #aaa;
+            color: #bbb;
             font-style: italic;
         }
     </style>
@@ -100,7 +146,9 @@
 <body>
 
 <div class="container">
-    <h1>☁️ Cloud File Manager (Neo-Aethel)</h1>
+    <div class="header-card">
+        <h1>🌳 Cloud File Manager</h1>
+    </div>
     
     {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
@@ -113,14 +161,20 @@
     <div class="glass-card">
         <h2>Upload a File to S3</h2>
         <form action="/upload" method="POST" enctype="multipart/form-data">
-            <input type="file" name="file" required>
-            <button type="submit">Upload to Cloud</button>
+            <div class="file-upload-wrapper">
+                <input type="file" name="file" id="fileInput" class="file-upload-input" required>
+                <label for="fileInput" class="file-upload-label">
+                    📁 Choose a file...
+                </label>
+                <div id="fileName" class="file-name-display">No file selected</div>
+            </div>
+            <button type="submit" class="upload-btn">Upload to Cloud</button>
         </form>
     </div>
 
     <div class="glass-card">
         <h2>Processed Files (DynamoDB Metadata)</h2>
-        <p style="color: #bbb; font-size: 0.9rem;">Note: Lambda functions process uploads and save metadata here. Refresh to see recent uploads.</p>
+        <p style="color: #ccc; font-size: 0.9rem;">Note: Lambda functions process uploads and save metadata here. Refresh to see recent uploads.</p>
         {% if files %}
             <table>
                 <thead>
@@ -141,11 +195,17 @@
                 </tbody>
             </table>
         {% else %}
-            <div class="empty-state">No files found. The sky is clear! Upload a file to get started.</div>
+            <div class="empty-state">No files found. The forest is quiet! Upload a file to get started.</div>
         {% endif %}
     </div>
 </div>
 
+<script>
+    document.getElementById('fileInput').addEventListener('change', function(e) {
+        var fileName = e.target.files[0] ? e.target.files[0].name : 'No file selected';
+        document.getElementById('fileName').textContent = fileName;
+    });
+</script>
 </body>
 </html>
 
