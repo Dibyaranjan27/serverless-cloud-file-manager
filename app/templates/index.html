@@ -47,6 +47,7 @@
                             <th>Filename</th>
                             <th>Size (Bytes)</th>
                             <th>Upload Time (UTC)</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -55,6 +56,9 @@
                             <td>{{ file.filename }}</td>
                             <td>{{ file.size_bytes }}</td>
                             <td>{{ file.upload_timestamp }}</td>
+                            <td>
+                                <a href="{{ url_for('download_file', filename=file.filename) }}" class="download-link">⬇️ Download</a>
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>

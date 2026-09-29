@@ -48,6 +48,23 @@ def upload_file():
         
     return redirect(url_for('index'))
 
+from flask import send_file
+import io
+
+@app.route('/download/<filename>')
+def download_file(filename):
+    try:
+        file_obj = s3_client.get_object(Bucket=BUCKET_NAME, Key=filename)
+        return send_file(
+            io.BytesIO(file_obj['Body'].read()),
+            download_name=filename,
+            as_attachment=True
+        )
+    except ClientError as e:
+        print(f"S3 Download Error: {e}")
+        flash(f"Failed to download from S3: {e}", 'error')
+        return redirect(url_for('index'))
+
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
 

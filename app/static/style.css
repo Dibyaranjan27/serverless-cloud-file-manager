@@ -1,26 +1,218 @@
-* { box-sizing: border-box; }
-body { font-family: 'Poppins', sans-serif; margin: 0; padding: 40px 20px; background: url('/static/background.jpg') no-repeat center center fixed; background-size: cover; color: #fff; min-height: 100vh; }
-.container { max-width: 900px; margin: 0 auto; }
-.header-card { background: rgba(20, 30, 20, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.15); padding: 20px; border-radius: 16px; box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5); margin-bottom: 40px; text-align: center; }
-h1 { margin: 0; font-size: 2.8rem; background: -webkit-linear-gradient(#1e3c72, #2a5298); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.7)); }
-.glass-card { background: rgba(20, 30, 20, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.15); padding: 30px; border-radius: 16px; box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5); margin-bottom: 30px; transition: transform 0.3s ease; }
-.glass-card:hover { transform: translateY(-5px); }
-h2 { margin-top: 0; color: #ffb347; border-bottom: 2px solid rgba(255, 179, 71, 0.3); padding-bottom: 10px; }
-.flash { padding: 15px; border-radius: 8px; margin-bottom: 20px; font-weight: 600; text-align: center; }
-.flash.success { background: rgba(40, 167, 69, 0.8); border: 1px solid #28a745; }
-.flash.error { background: rgba(220, 53, 69, 0.8); border: 1px solid #dc3545; }
-form { display: flex; gap: 15px; align-items: center; flex-wrap: wrap; }
-.file-upload-wrapper { position: relative; flex-grow: 1; display: flex; align-items: center; }
-.file-upload-input { opacity: 0; position: absolute; z-index: -1; }
-.file-upload-label { display: flex; align-items: center; justify-content: center; width: 100%; padding: 12px 20px; background: rgba(255, 255, 255, 0.1); border: 2px dashed rgba(255, 255, 255, 0.4); border-radius: 8px; color: #fff; cursor: pointer; font-weight: 600; transition: all 0.3s ease; }
-.file-upload-label:hover { background: rgba(255, 255, 255, 0.2); border-color: #ffb347; color: #ffb347; }
-.file-name-display { margin-left: 15px; font-size: 0.9rem; color: #ccc; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px; }
-button.upload-btn { background: linear-gradient(45deg, #ff7b00 0%, #ffb347 100%); color: white; border: none; padding: 14px 30px; border-radius: 8px; cursor: pointer; font-weight: 800; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(255, 123, 0, 0.4); }
-button.upload-btn:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(255, 123, 0, 0.6); }
-table { width: 100%; border-collapse: collapse; margin-top: 20px; background: rgba(0,0,0,0.3); border-radius: 8px; overflow: hidden; }
-th, td { text-align: left; padding: 15px; }
-th { background-color: rgba(255,255,255,0.1); font-weight: 600; color: #ffb347; }
-tr:not(:last-child) { border-bottom: 1px solid rgba(255,255,255,0.05); }
-tr:hover { background-color: rgba(255,255,255,0.1); }
-.empty-state { text-align: center; padding: 40px; color: #bbb; font-style: italic; }
-@media (max-width: 600px) { h1 { font-size: 2rem; } .glass-card { padding: 20px; } .file-upload-wrapper { flex-direction: column; align-items: stretch; } .file-name-display { margin-left: 0; margin-top: 10px; text-align: center; } button.upload-btn { width: 100%; } .table-responsive { overflow-x: auto; -webkit-overflow-scrolling: touch; } }
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 40px 20px;
+    background: url('/static/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #fff;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.header-card {
+    background: rgba(20, 30, 20, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+h1 {
+    margin: 0;
+    font-size: 2.8rem;
+    background: -webkit-linear-gradient(#1e3c72, #b0b5be);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 10px rgba(110, 98, 98, 0.7));
+}
+
+.glass-card {
+    background: rgba(20, 30, 20, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+    margin-bottom: 30px;
+    transition: transform 0.3s ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-5px);
+}
+
+h2 {
+    margin-top: 0;
+    color: #ffb347;
+    border-bottom: 2px solid rgba(255, 179, 71, 0.3);
+    padding-bottom: 10px;
+}
+
+.flash {
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.flash.success {
+    background: rgba(40, 167, 69, 0.8);
+    border: 1px solid #28a745;
+}
+
+.flash.error {
+    background: rgba(220, 53, 69, 0.8);
+    border: 1px solid #dc3545;
+}
+
+form {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.file-upload-wrapper {
+    position: relative;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+.file-upload-input {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+.file-upload-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px dashed rgba(255, 255, 255, 0.4);
+    border-radius: 8px;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.file-upload-label:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: #ffb347;
+    color: #ffb347;
+}
+
+.file-name-display {
+    margin-left: 15px;
+    font-size: 0.9rem;
+    color: #ccc;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+}
+
+button.upload-btn {
+    background: linear-gradient(45deg, #ff7b00 0%, #ffb347 100%);
+    color: white;
+    border: none;
+    padding: 14px 30px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 800;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 123, 0, 0.4);
+}
+
+button.upload-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(255, 123, 0, 0.6);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th,
+td {
+    text-align: left;
+    padding: 15px;
+}
+
+th {
+    background-color: rgba(255, 255, 255, 0.1);
+    font-weight: 600;
+    color: #ffb347;
+}
+
+tr:not(:last-child) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+tr:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.empty-state {
+    text-align: center;
+    padding: 40px;
+    color: #bbb;
+    font-style: italic;
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    .glass-card {
+        padding: 20px;
+    }
+
+    .file-upload-wrapper {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .file-name-display {
+        margin-left: 0;
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    button.upload-btn {
+        width: 100%;
+    }
+
+    .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}.download-link { color: #ffb347; text-decoration: none; font-weight: 600; padding: 5px 10px; background: rgba(255,179,71,0.1); border-radius: 5px; transition: all 0.3s; }
+.download-link:hover { background: rgba(255,179,71,0.3); color: #fff; }
