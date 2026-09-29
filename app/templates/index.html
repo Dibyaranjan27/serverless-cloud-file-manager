@@ -34,10 +34,10 @@
         h1 { 
             margin: 0;
             font-size: 2.8rem; 
-            background: -webkit-linear-gradient(#ffb347, #ff7b00);
+            background: -webkit-linear-gradient(#1e3c72, #2a5298);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 10px rgba(255, 123, 0, 0.5));
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.7));
         }
         .glass-card { 
             background: rgba(20, 30, 20, 0.85);
@@ -141,6 +141,16 @@
             color: #bbb;
             font-style: italic;
         }
+        
+        @media (max-width: 600px) {
+            h1 { font-size: 2rem; }
+            .glass-card { padding: 20px; }
+            .file-upload-wrapper { flex-direction: column; align-items: stretch; }
+            .file-name-display { margin-left: 0; margin-top: 10px; text-align: center; }
+            button.upload-btn { width: 100%; }
+            /* Make table scroll horizontally on small screens */
+            .table-responsive { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+        }
     </style>
 </head>
 <body>
@@ -176,24 +186,26 @@
         <h2>Processed Files (DynamoDB Metadata)</h2>
         <p style="color: #ccc; font-size: 0.9rem;">Note: Lambda functions process uploads and save metadata here. Refresh to see recent uploads.</p>
         {% if files %}
-            <table>
-                <thead>
-                    <tr>
-                        <th>Filename</th>
-                        <th>Size (Bytes)</th>
-                        <th>Upload Time (UTC)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for file in files %}
-                    <tr>
-                        <td>{{ file.filename }}</td>
-                        <td>{{ file.size_bytes }}</td>
-                        <td>{{ file.upload_timestamp }}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Filename</th>
+                            <th>Size (Bytes)</th>
+                            <th>Upload Time (UTC)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for file in files %}
+                        <tr>
+                            <td>{{ file.filename }}</td>
+                            <td>{{ file.size_bytes }}</td>
+                            <td>{{ file.upload_timestamp }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         {% else %}
             <div class="empty-state">No files found. The forest is quiet! Upload a file to get started.</div>
         {% endif %}
