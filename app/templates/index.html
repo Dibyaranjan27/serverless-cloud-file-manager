@@ -45,7 +45,7 @@
                     <thead>
                         <tr>
                             <th>Filename</th>
-                            <th>Size (Bytes)</th>
+                            <th>Size</th>
                             <th>Upload Time (UTC)</th>
                             <th>Actions</th>
                         </tr>
@@ -54,8 +54,8 @@
                         {% for file in files %}
                         <tr>
                             <td>{{ file.filename }}</td>
-                            <td>{{ file.size_bytes }}</td>
-                            <td>{{ file.upload_timestamp }}</td>
+                            <td>{{ file.size_bytes | format_size }}</td>
+                            <td>{{ file.upload_timestamp | format_time }}</td>
                             <td>
                                 <a href="{{ url_for('download_file', filename=file.filename) }}" class="download-link">⬇️ Download</a>
                             </td>

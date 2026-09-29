@@ -13,6 +13,29 @@ BUCKET_NAME = 'cloud-file-manager-bucket'
 s3_client = boto3.client('s3', endpoint_url=AWS_ENDPOINT)
 dynamodb = boto3.resource('dynamodb', endpoint_url=AWS_ENDPOINT)
 
+@app.template_filter('format_size')
+def format_size(size_in_bytes):
+    try:
+        size = float(size_in_bytes)
+        for unit in ['B', 'KB', 'MB', 'GB']:
+            if size < 1024.0:
+                return f"{size:.1f} {unit}"
+            size /= 1024.0
+        return f"{size:.1f} TB"
+    except (ValueError, TypeError):
+        return size_in_bytes
+
+@app.template_filter('format_time')
+def format_time(timestamp_str):
+    try:
+        # Example format: 2026-09-29T18:45:14.908332
+        # Split at T and remove microseconds
+        date_part, time_part = timestamp_str.split('T')
+        time_part = time_part.split('.')[0]
+        return f"{date_part} {time_part}"
+    except Exception:
+        return timestamp_str
+
 @app.route('/')
 def index():
     table = dynamodb.Table('FileMetadata')
