@@ -210,9 +210,69 @@ tr:hover {
         width: 100%;
     }
 
-    .table-responsive {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
+    /* Mobile Responsive Table (Card Layout) */
+    table, thead, tbody, th, td, tr {
+        display: block;
     }
-}.download-link { color: #ffb347; text-decoration: none; font-weight: 600; padding: 5px 10px; background: rgba(255,179,71,0.1); border-radius: 5px; transition: all 0.3s; }
+    
+    /* Hide table headers (but not display: none;, for accessibility) */
+    thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+    
+    tr {
+        border-bottom: 2px solid rgba(255, 255, 255, 0.2) !important;
+        margin-bottom: 15px;
+        background: rgba(0,0,0,0.2);
+        border-radius: 8px;
+        padding: 10px;
+    }
+    
+    tr:hover {
+        background-color: rgba(0,0,0,0.3);
+    }
+    
+    td {
+        /* Behave like a "row" */
+        border: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        position: relative;
+        padding-left: 45%; /* Make room for the label */
+        text-align: right;
+        min-height: 40px; /* Ensure there's space */
+        white-space: normal;
+        word-break: break-all;
+    }
+    
+    td:last-child {
+        border-bottom: 0;
+    }
+    
+    td::before {
+        /* Now like a table header */
+        position: absolute;
+        top: 15px;
+        left: 10px;
+        width: 40%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: 600;
+        color: #ffb347;
+    }
+
+    /* Label the data */
+    td:nth-of-type(1)::before { content: "Filename"; }
+    td:nth-of-type(2)::before { content: "Size"; }
+    td:nth-of-type(3)::before { content: "Time"; }
+    td:nth-of-type(4)::before { content: "Actions"; }
+    
+    .download-link {
+        display: inline-block;
+        margin-top: 5px;
+    }
+}
+.download-link { color: #ffb347; text-decoration: none; font-weight: 600; padding: 5px 10px; background: rgba(255,179,71,0.1); border-radius: 5px; transition: all 0.3s; }
 .download-link:hover { background: rgba(255,179,71,0.3); color: #fff; }
