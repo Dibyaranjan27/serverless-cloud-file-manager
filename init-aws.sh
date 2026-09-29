@@ -25,10 +25,12 @@ awslocal lambda create-function \
     --zip-file fileb://process_file.zip \
     --timeout 30
 
+# Wait for Lambda to be active
+awslocal lambda wait function-active-v2 --function-name ProcessFileLambda
+
 # Configure S3 to trigger Lambda
 awslocal s3api put-bucket-notification-configuration \
     --bucket cloud-file-manager-bucket \
     --notification-configuration '{"LambdaFunctionConfigurations": [{"LambdaFunctionArn": "arn:aws:lambda:us-east-1:000000000000:function:ProcessFileLambda", "Events": ["s3:ObjectCreated:*"]}]}'
 
 echo "Initialization complete!"
-
