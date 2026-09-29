@@ -57,17 +57,23 @@ def upload_file():
         flash('No file part', 'error')
         return redirect(url_for('index'))
         
-    file = request.files['file']
-    if file.filename == '':
+    files = request.files.getlist('file')
+    if not files or files[0].filename == '':
         flash('No selected file', 'error')
         return redirect(url_for('index'))
         
-    try:
-        s3_client.upload_fileobj(file, BUCKET_NAME, file.filename)
-        flash(f"File '{file.filename}' successfully uploaded to S3!", 'success')
-    except ClientError as e:
-        print(f"S3 Error: {e}")
-        flash(f"Failed to upload to S3: {e}", 'error')
+    success_count = 0
+    for file in files:
+        if file.filename:
+            try:
+                s3_client.upload_fileobj(file, BUCKET_NAME, file.filename)
+                success_count += 1
+            except ClientError as e:
+                print(f"S3 Error: {e}")
+                flash(f"Failed to upload {file.filename}: {e}", 'error')
+                
+    if success_count > 0:
+        flash(f"Successfully uploaded {success_count} file(s) to S3!", 'success')
         
     return redirect(url_for('index'))
 
