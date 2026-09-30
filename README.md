@@ -152,6 +152,24 @@ docker-compose down
 
 ---
 
+## 🚀 Deploying to Real AWS
+
+While this project runs locally using LocalStack, it is **100% compatible** with a real AWS environment. To migrate to production:
+
+1. **Remove LocalStack Overrides**: 
+   In `app.py`, remove the `endpoint_url` parameter from Boto3 clients:
+   ```python
+   # Change from:
+   s3_client = boto3.client('s3', endpoint_url='http://localhost:4566')
+   # To:
+   s3_client = boto3.client('s3')
+   ```
+2. **AWS Credentials**: Configure your real AWS credentials on your server or via environment variables (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_DEFAULT_REGION`).
+3. **Infrastructure Provisioning**: Run the AWS CLI commands from `init-aws.sh` directly against your real AWS account to create the S3 Bucket, DynamoDB table, and Lambda function.
+4. **IAM Roles**: Ensure your Lambda function has an IAM Role with `AmazonS3ReadOnlyAccess` and `AmazonDynamoDBFullAccess` permissions.
+
+---
+
 ## 🤝 Contribution
 
 Feel free to contribute to this project! Fork the repository, make your improvements, and submit a pull request. All contributions are welcome.
@@ -169,21 +187,13 @@ If you have any questions or suggestions, feel free to contact me. I'd be happy 
   <table>
     <tr>
       <td align="center">
-        <img src="https://images.unsplash.com/photo-1614064641913-a53b53c126d9?q=80&w=600&auto=format&fit=crop" alt="HOMEPAGE DASHBOARD" width="400">
+        <img src="docs/img/homepage.png" alt="HOMEPAGE DASHBOARD" width="600">
         <br/>
         <em>HOMEPAGE DASHBOARD</em>
-      </td>
-      <td align="center">
-        <img src="https://images.unsplash.com/photo-1555421689-491a97ff2040?q=80&w=600&auto=format&fit=crop" alt="MOBILE RESPONSIVE VIEW" width="400">
-        <br/>
-        <em>MOBILE RESPONSIVE VIEW</em>
       </td>
     </tr>
   </table>
 </div>
-
-*(Note: Replace the image `src` URLs in `README.md` with your actual local screenshot paths once you take them!)*
-
 </details>
 
 ---

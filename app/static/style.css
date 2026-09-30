@@ -243,7 +243,8 @@ tr:hover {
         text-align: right;
         min-height: 40px; /* Ensure there's space */
         white-space: normal;
-        word-break: break-all;
+        overflow-wrap: anywhere;
+        word-break: normal;
     }
     
     td:last-child {
