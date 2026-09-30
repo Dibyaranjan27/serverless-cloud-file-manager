@@ -1,7 +1,3 @@
-<div align="center">
-  <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1000&auto=format&fit=crop" alt="Cloud File Manager Banner" width="100%" style="border-radius: 12px; margin-bottom: 20px; max-height: 320px; object-fit: cover;" />
-</div>
-
 <h1 align="center">☁️ Serverless Cloud File Manager ☁️</h1>
 
 <p align="center">
@@ -25,6 +21,8 @@
 - [Installation and Usage](#-installation-and-usage)
 - [File Structure](#-file-structure)
 - [Security Best Practices](#-security-best-practices)
+- [Contribution](#-contribution)
+- [Screenshots](#-screenshots)
 - [License](#-license)
 - [Author](#-author)
 
@@ -32,7 +30,7 @@
 
 ## 📜 The Story Behind This Project
 
-This project was built for a 4th-year Cloud Computing college syllabus.
+This project was built for a 4th semester Cloud Computing college syllabus.
 
 Instead of relying on expensive, real-world AWS accounts that require credit cards and run the risk of unexpected billing charges, I decided to build a **fully simulated, enterprise-grade cloud architecture entirely locally and for free.** 
 
@@ -158,16 +156,52 @@ docker-compose down
 
 ---
 
+## 🤝 Contribution
+
+Feel free to contribute to this project! Fork the repository, make your improvements, and submit a pull request. All contributions are welcome.
+
+If you have any questions or suggestions, feel free to contact me. I'd be happy to help! 😊
+
+---
+
+## 🖥️ Screenshots
+
+<details>
+<summary><b>Click to view Screenshots! 📸</b></summary>
+
+<div align="center">
+  <table>
+    <tr>
+      <td align="center">
+        <img src="https://images.unsplash.com/photo-1614064641913-a53b53c126d9?q=80&w=600&auto=format&fit=crop" alt="HOMEPAGE DASHBOARD" width="400">
+        <br/>
+        <em>HOMEPAGE DASHBOARD</em>
+      </td>
+      <td align="center">
+        <img src="https://images.unsplash.com/photo-1555421689-491a97ff2040?q=80&w=600&auto=format&fit=crop" alt="MOBILE RESPONSIVE VIEW" width="400">
+        <br/>
+        <em>MOBILE RESPONSIVE VIEW</em>
+      </td>
+    </tr>
+  </table>
+</div>
+
+*(Note: Replace the image `src` URLs in `README.md` with your actual local screenshot paths once you take them!)*
+
+</details>
+
+---
+
 ## 📜 License
 
-This project is created for educational purposes as a Cloud Computing course project.
+This project is open-source and available under the MIT License.
 
 ---
 
 ## 💡 Author
 
 <p align="center">
-<em>Built with curiosity & determination by</em>
+<em>Crafted with pixels & passion by</em>
 <br>
 <strong>Dibyaranjan Maharana</strong>
 <br>
