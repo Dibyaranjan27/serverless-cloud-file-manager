@@ -1,6 +1,7 @@
-venv/
+localstack-data/
 __pycache__/
 *.pyc
-.DS_Store
+.venv/
+venv/
 .env
-
+.DS_Store

@@ -63,14 +63,16 @@ def upload_file():
         return redirect(url_for('index'))
         
     success_count = 0
+    from werkzeug.utils import secure_filename
     for file in files:
         if file.filename:
             try:
-                s3_client.upload_fileobj(file, BUCKET_NAME, file.filename)
+                safe_filename = secure_filename(file.filename)
+                s3_client.upload_fileobj(file, BUCKET_NAME, safe_filename)
                 success_count += 1
             except ClientError as e:
                 print(f"S3 Error: {e}")
-                flash(f"Failed to upload {file.filename}: {e}", 'error')
+                flash(f"Failed to upload {safe_filename}: {e}", 'error')
                 
     if success_count > 0:
         flash(f"Successfully uploaded {success_count} file(s) to S3!", 'success')
@@ -82,11 +84,13 @@ import io
 
 @app.route('/download/<filename>')
 def download_file(filename):
+    from werkzeug.utils import secure_filename
+    safe_filename = secure_filename(filename)
     try:
-        file_obj = s3_client.get_object(Bucket=BUCKET_NAME, Key=filename)
+        file_obj = s3_client.get_object(Bucket=BUCKET_NAME, Key=safe_filename)
         return send_file(
             io.BytesIO(file_obj['Body'].read()),
-            download_name=filename,
+            download_name=safe_filename,
             as_attachment=True
         )
     except ClientError as e:
