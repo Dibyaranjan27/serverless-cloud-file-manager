@@ -66,15 +66,11 @@ If you find this helpful for your own Cloud Computing studies, feel free to drop
 
 ## 🏗️ Architecture Analysis
 
-### The Event Pipeline
+<div align="center">
+  <img src="docs/img/architecture_diagram.png" alt="Architecture Diagram" width="100%" style="border-radius: 8px; margin-bottom: 20px;" />
+</div>
 
 The data pipeline follows a strict, decoupled, asynchronous flow:
-
-```text
-User Upload ──> S3 Bucket ──(Event Trigger)──> AWS Lambda ──> DynamoDB Table
-                                                                      │
-User Dashboard <──────────────────────────────────────────────────────┘
-```
 
 1. **Upload**: The Flask app acts solely as an API gateway, streaming the binary file into S3.
 2. **Event**: S3 fires an `ObjectCreated` event containing the file's Amazon Resource Name (ARN).
